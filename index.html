@@ -1,694 +1,303 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-    <title>Retro Emulator</title>
-    <style>
-        * {margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;background:#000000;overflow:hidden;font-family:-apple-system,Roboto,sans-serif}#root{width:100%;height:100%;position:relative}
-        #emulator-container {width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-        canvas {width:100%;aspect-ratio:55/42;position:absolute;inset:0}
-        *:focus {outline:none}
-        * {-webkit-tap-highlight-color:transparent}
-    </style>
-</head>
-<body>
-<div id="root">
-    <canvas id="emulator-container"></canvas>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTA Modding Community | Official Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#0f1117;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .bg{
+      position:fixed;
+      inset:0;
+      background:radial-gradient(circle at top,#1f2937,#0f1117 60%);
+      z-index:-1;
+    }
+
+    .container{
+      width:100%;
+      max-width:1100px;
+      margin:auto;
+      padding:20px;
+    }
+
+    .hero{
+      text-align:center;
+      padding:60px 20px 30px;
+    }
+
+    .logo{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      border:4px solid #00ff99;
+      object-fit:cover;
+      box-shadow:0 0 25px rgba(0,255,153,.4);
+    }
+
+    h1{
+      margin-top:20px;
+      font-size:40px;
+      font-weight:700;
+    }
+
+    .tagline{
+      margin-top:10px;
+      color:#cfcfcf;
+      line-height:1.7;
+      font-size:16px;
+      max-width:700px;
+      margin-inline:auto;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-top:18px;
+      background:#00ff99;
+      color:black;
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .section-title{
+      font-size:28px;
+      margin-bottom:20px;
+      font-weight:700;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .card{
+      background:#161b22;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:24px;
+      transition:.3s ease;
+      box-shadow:0 8px 20px rgba(0,0,0,.25);
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:#00ff99;
+      box-shadow:0 0 30px rgba(0,255,153,.18);
+    }
+
+    .icon{
+      font-size:40px;
+      margin-bottom:15px;
+    }
+
+    .card h3{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      color:#d1d5db;
+      line-height:1.6;
+      font-size:14px;
+      margin-bottom:20px;
+    }
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      background:#00ff99;
+      color:black;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:600;
+      transition:.3s ease;
+    }
+
+    .btn:hover{
+      background:white;
+    }
+
+    .project-box{
+      margin-top:50px;
+      background:#161b22;
+      border-radius:24px;
+      padding:35px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .project-box p{
+      margin-top:15px;
+      color:#d1d5db;
+      line-height:1.8;
+    }
+
+    .support{
+      margin-top:50px;
+      text-align:center;
+    }
+
+    .support-box{
+      background:linear-gradient(135deg,#00ff99,#00ccff);
+      color:black;
+      border-radius:24px;
+      padding:40px 25px;
+      margin-top:25px;
+      box-shadow:0 0 40px rgba(0,255,153,.25);
+    }
+
+    .support-box h2{
+      font-size:32px;
+      margin-bottom:15px;
+    }
+
+    .support-box p{
+      line-height:1.8;
+      font-weight:500;
+      margin-bottom:20px;
+    }
+
+    .wallet{
+      background:rgba(255,255,255,.25);
+      padding:15px;
+      border-radius:14px;
+      margin-top:12px;
+      font-weight:600;
+      word-break:break-all;
+    }
+
+    footer{
+      text-align:center;
+      color:#aaa;
+      padding:50px 10px 25px;
+      font-size:14px;
+    }
+
+    @media(max-width:700px){
+      h1{
+        font-size:30px;
+      }
+
+      .section-title{
+        font-size:24px;
+      }
+
+      .support-box h2{
+        font-size:26px;
+      }
+    }
+  </style></head>
+<body><div class="bg"></div><div class="container">  <section class="hero">
+    <img class="logo" src="https://i.imgur.com/UPrs1EW.png" alt="logo"><h1>GTA Modding Community</h1>
+
+<p class="tagline">
+  Official creator page for Project Japan Definitive Edition, Android GTA SA mods,
+  textures, graphics upgrades, realistic cars, shaders, and next-level mobile modding content.
+</p>
+
+<div class="badge">Official Community Links</div>
+
+  </section>  <section>
+    <h2 class="section-title">Official Platforms</h2><div class="grid">
+
+  <div class="card">
+    <div class="icon">▶️</div>
+    <h3>YouTube</h3>
+    <p>
+      Watch Project Japan videos, tutorials, graphics showcases, gameplay, and Android modding updates.
+    </p>
+    <a class="btn" href="https://youtube.com/@gtamoddingcommuniity" target="_blank">
+      Visit Channel
+    </a>
+  </div>
+
+  <div class="card">
+    <div class="icon">📦</div>
+    <h3>Mods Downloads</h3>
+    <p>
+      Download GTA SA Android mods, Project Japan files, retextures, shaders, cars, and updates.
+    </p>
+    <a class="btn" href="https://modsfire.com" target="_blank">
+      Open Downloads
+    </a>
+  </div>
+
+  <div class="card">
+    <div class="icon">💬</div>
+    <h3>Telegram</h3>
+    <p>
+      Join the community for update announcements, support, screenshots, and upcoming releases.
+    </p>
+    <a class="btn" href="#">
+      Join Community
+    </a>
+  </div>
+
+  <div class="card">
+    <div class="icon">🎮</div>
+    <h3>Project Japan</h3>
+    <p>
+      Definitive Edition mobile graphics project with retextured roads, buildings, lighting, weather, and effects.
+    </p>
+    <a class="btn" href="#project">
+      Learn More
+    </a>
+  </div>
+
 </div>
 
+  </section>  <section class="project-box" id="project">
+    <h2 class="section-title">About The Project</h2><p>
+  Project Japan Definitive Edition is a complete Android GTA SA visual overhaul focused on realism,
+  atmosphere, improved textures, modern lighting, and enhanced gameplay visuals.
+</p>
 
-<script>
-    let nostalgistInstance = null;
+<p>
+  The goal of the project is to deliver a next-generation mobile GTA San Andreas experience while keeping
+  the game optimized for Android devices.
+</p>
 
-    function blobToBase64(blob, callback) {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-            callback(reader.result);
-        };
-        reader.readAsDataURL(blob);
-    }
+<p>
+  This community page contains official creator links, downloads, updates, and support methods.
+</p>
 
-    function emitCheatResult(action, requestId, ok, message) {
-        postMessage('cheat_result', {
-            action,
-            requestId,
-            ok,
-            message
-        });
-    }
+  </section>  <section class="support">
+    <div class="support-box">
+      <h2>Support The Project</h2><p>
+    Supporting the project helps improve future updates, textures, graphics development,
+    testing, and community releases.
+  </p>
 
-    function postMessage(type, data) {
-        postMessage(type, {});
-    }
-    function postMessage(type, data) {
-        try {
-            const message = JSON.stringify({ type, data });
+  <div class="wallet">
+    Binance Pay UID: YOUR_BINANCE_UID
+  </div>
 
-            // Android 桥接方式
-            if (window.JSBridge) {
-                window.JSBridge.postMessage(JSON.stringify({
-                    callbackId: 0,
-                    methodName: 'realPostMessage',
-                    params: message
-                }));
-                return;
-            }
+  <div class="wallet">
+    USDT TRC20: YOUR_TRC20_ADDRESS
+  </div>
 
-            // iOS 桥接方式
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.nativeHandler) {
-                window.webkit.messageHandlers.nativeHandler.postMessage(message);
-                return;
-            }
+  <div class="wallet">
+    Easypaisa / JazzCash: YOUR_NUMBER
+  </div>
 
-            // 降级：使用控制台输出
-            console.log("postMessage error, no bridge available. type: " + type + ", data: ", data);
-        } catch (e) {
-            console.error('Failed to post message:', e);
-        }
-    }
+</div>
 
-    function log(message) {
-        try {
-            postMessage('log', { message: message });
-        } catch (e) {
-            console.error('Failed to log:', e);
-        }
-    }
-
-    function logError(message, error) {
-        try {
-            const errorMsg = message + (error ? ': ' + (error.message || error.toString()) : '');
-            postMessage('log', { message: errorMsg });
-        } catch (e) {
-            console.error('Failed to log error:', e);
-        }
-    }
-
-    /**
-     * 加载 Nostalgist.js
-     */
-    function loadNostalgist(jsUrl, onSuccess, onFailed) {
-        log('start loadNostalgist');
-        if (window.Nostalgist) {
-            if (onSuccess) {
-                onSuccess();
-            }
-            return
-        }
-        const script = document.createElement('script');
-        script.src = jsUrl;
-        script.onload = function() {
-            log('Nostalgist.js script loaded, waiting for initialization...');
-
-            // 轮询等待 window.Nostalgist 真正可用
-            // 解决异步初始化时序问题: script.onload 触发时,库可能还在加载 WebAssembly
-            let retryCount = 0;
-            const maxRetries = 50; // 最多等待 5 秒 (100ms * 50)
-
-            const checkNostalgistReady = () => {
-                retryCount++;
-
-                // 检查 Nostalgist 对象是否已创建
-                if (window.Nostalgist) {
-                    log('Nostalgist.js initialized successfully');
-                    if (onSuccess) {
-                        onSuccess();
-                    }
-                    postMessage('library_loaded');
-                } else if (retryCount < maxRetries) {
-                    // 继续等待
-                    setTimeout(checkNostalgistReady, 100);
-                } else {
-                    // 超时失败
-                    logError('Nostalgist.js initialization timeout', new Error('Timeout waiting for window.Nostalgist'));
-                    // 使用错误码而非硬编码文本
-                    postMessage('library_load_error', { errorCode: 'nostalgist_init_timeout' });
-                    if (onFailed) {
-                        onFailed();
-                    }
-                }
-            };
-
-            // 开始检查
-            checkNostalgistReady();
-        };
-        script.onerror = function() {
-            log('Failed to load Nostalgist.js');
-            logError('Failed to load Nostalgist.js', new Error('Script load failed'));
-            // 使用错误码而非硬编码文本
-            postMessage('library_load_error', { errorCode: 'nostalgist_load_failed' });
-            if (onFailed) {
-                onFailed();
-            }
-        };
-        document.head.appendChild(script);
-    }
-
-    // Android 接口
-    const JSBridgeApi = {
-        /**
-         * 启动模拟器
-         * @param {Object} config - 配置对象
-         * @param {string} config.core - 模拟器核心 (fceumm, snes9x, genesis_plus_gx 等)
-         * @param {string} config.romFileUri - ROM 文件路径
-         * @param {string} config.romName - ROM 文件名
-         * @param {string} config.romBase64 - ROM 文件的base64数据（可选）
-         * @param {string} config.wasmBase64 - WASM 文件的base64数据（可选）
-         * @param {string} config.wasmFileUrl - WASM 文件URL（可选）
-         * @param {string} config.jsBase64 - JS 文件的base64数据（可选）
-         * @param {string} config.jsFileUrl - JS 文件URL（可选）
-         * @param {Array} config.cheats - 预加载的作弊码列表（可选）[{id, code, type, enabled}]
-         */
-        launch: async function(config) {
-            loadNostalgist(config.nostalgistFileUri, async function() {
-                try {
-                    log('launch config keys: ' + Object.keys(config).join(', '));
-                    if (!window.Nostalgist) {
-                        // 使用错误码而非硬编码文本
-                        const error = new Error('nostalgist_not_loaded');
-                        throw error;
-                    }
-
-                    // 获取容器元素
-                    const container = document.getElementById('emulator-container');
-                    if (!container) {
-                        return;
-                    }
-
-                    // 清空容器
-                    container.innerHTML = '';
-
-                    // 处理ROM：优先使用base64，否则使用URL
-                    let romData;
-                    if (config.romBase64 && config.romBase64.length > 0) {
-                        log('使用 ROM Base64 数据');
-                        // 将base64转换为Blob
-                        const binaryString = atob(config.romBase64);
-                        const bytes = new Uint8Array(binaryString.length);
-                        for (let i = 0; i < binaryString.length; i++) {
-                            bytes[i] = binaryString.charCodeAt(i);
-                        }
-                        romData = new Blob([bytes]);
-                    } else {
-                        log('使用 ROM URL: ' + config.romFileUri);
-                        romData = config.romFileUri;
-                    }
-
-                    // 启动模拟器配置（提前写入作弊码）
-                    const launchConfig = {
-                        core: config.core,
-                        rom: romData,
-                        element: container,
-                        retroarchConfig: {
-                            cheevos_hardcore_mode_enable: false,
-                            cheat_enable: true,
-                            cheat_apply_after_toggle: true,
-                            input_cheat_toggle: 'nul',
-                            input_cheat_index_plus: 'nul',
-                            input_cheat_index_minus: 'nul',
-                            cheat_autoload_enable: true,
-                            cheat_database_path: '/home/web_user/retroarch/userdata/cheats',
-                            cheat_settings_path: '/home/web_user/retroarch/userdata/cheats',
-                        },
-                        resolveCoreWasm(core, options) {
-                            console.log('resolveCoreWasm core:', core);
-                            // 优先使用base64，否则使用URL
-                            if (config.wasmBase64 && config.wasmBase64.length > 0) {
-                                log('使用 WASM Base64 数据');
-                                // 将base64转换为Blob，然后创建URL
-                                const binaryString = atob(config.wasmBase64);
-                                const bytes = new Uint8Array(binaryString.length);
-                                for (let i = 0; i < binaryString.length; i++) {
-                                    bytes[i] = binaryString.charCodeAt(i);
-                                }
-                                const blob = new Blob([bytes], { type: 'application/wasm' });
-                                return URL.createObjectURL(blob);
-                            } else if (config.wasmFileUrl && config.wasmFileUrl.length > 0) {
-                                log('使用 WASM URL: ' + config.wasmFileUrl);
-                                return config.wasmFileUrl;
-                            }
-                            // 如果都没有，返回undefined让Nostalgist使用默认CDN
-                            log('使用默认 WASM CDN');
-                            return undefined;
-                        },
-                        resolveCoreJs(core, options) {
-                            console.log('resolveCoreJs core:', core);
-                            // 优先使用base64，否则使用URL
-                            if (config.jsBase64 && config.jsBase64.length > 0) {
-                                log('使用 JS Base64 数据');
-                                // 将base64转换为Blob，然后创建URL
-                                const binaryString = atob(config.jsBase64);
-                                const bytes = new Uint8Array(binaryString.length);
-                                for (let i = 0; i < binaryString.length; i++) {
-                                    bytes[i] = binaryString.charCodeAt(i);
-                                }
-                                const blob = new Blob([bytes], { type: 'application/javascript' });
-                                return URL.createObjectURL(blob);
-                            } else if (config.jsFileUrl && config.jsFileUrl.length > 0) {
-                                log('使用 JS URL: ' + config.jsFileUrl);
-                                return config.jsFileUrl;
-                            }
-                            // 如果都没有，返回undefined让Nostalgist使用默认CDN
-                            log('使用默认 JS CDN');
-                            return undefined;
-                        }
-                    };
-
-                    log('Launching with Nostalgist (prepare + beforeLaunch cheats)...');
-
-                    // 使用 prepare 创建实例，beforeLaunch 预写作弊文件
-                    nostalgistInstance = await Nostalgist.prepare({
-                        ...launchConfig,
-                        beforeLaunch: async () => {
-                            try {
-                                const cheats = (config.cheats || []).filter((c) => c && c.enabled !== false);
-                                if (cheats.length === 0) {
-                                    log('No preloaded cheats to apply in beforeLaunch');
-                                    return;
-                                }
-                                log('beforeLaunch apply cheats count=' + cheats.length);
-                                for (const cheat of cheats) {
-                                    const type = cheat.type || 'game_genie';
-                                    log(`beforeLaunch applying cheat id=${cheat.id} type=${type}`);
-                                    await nostalgistInstance.applyCheat({
-                                        id: cheat.id,
-                                        code: cheat.code,
-                                        type,
-                                    });
-                                }
-                                log('beforeLaunch cheats applied ok');
-                            } catch (err) {
-                                logError('beforeLaunch apply cheats failed', err);
-                            }
-                        },
-                    });
-
-                    await nostalgistInstance.start();
-
-                    // 启动后再应用一次作弊码，确保核心加载到内存
-                    if (config.cheats && Array.isArray(config.cheats) && config.cheats.length > 0) {
-                        log('Post-start re-apply cheats: ' + config.cheats.length);
-                        try {
-                            for (const cheat of config.cheats) {
-                                if (cheat.enabled !== false) {
-                                    const type = cheat.type || 'game_genie';
-                                    log('Post-start applying cheat id=' + cheat.id + ' type=' + type);
-                                    await nostalgistInstance.applyCheat({
-                                        id: cheat.id,
-                                        code: cheat.code,
-                                        type,
-                                    });
-                                }
-                            }
-                            log('Post-start cheats applied ok');
-                        } catch (err) {
-                            logError('Post-start apply cheats failed', err);
-                        }
-                    }
-
-                    postMessage('emulator_ready', {
-                        core: config.core,
-                        romName: config.romName
-                    });
-                    log('Emulator launched successfully');
-                } catch (error) {
-                    logError('Failed to launch emulator', error);
-
-                    // 判断是否是预定义的错误码
-                    const errorCode = error.message;
-
-                    if (errorCode === 'nostalgist_not_loaded') {
-                        // 预定义错误,直接发送错误码
-                        postMessage('emulator_error', { errorCode });
-                    } else {
-                        // 其他错误,使用 launch_failed + 原始错误信息
-                        postMessage('emulator_error', {
-                            errorCode: 'launch_failed',
-                            originalMessage: error.message || error.toString()
-                        });
-                    }
-                }
-            }, function() {
-                // 加载失败的回调
-                postMessage('emulator_error', {
-                    errorCode: 'nostalgist_load_failed'
-                });
-            });
-        },
-
-        /**
-         * 保存游戏状态
-         */
-        saveState: async function() {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                log('Saving state...');
-                const result = await nostalgistInstance.saveState();
-                log('State saved successfully, thumbnail: ' + result.thumbnail);
-                // 将状态转换为 base64 发送给 Android
-                const reader = new FileReader();
-                reader.onloadend = function() {
-                    const base64data = reader.result.split(',')[1];
-
-                    const reader2 = new FileReader();
-                    reader2.onloadend = function() {
-                        const thumbnailbase64data = reader2.result.split(',')[1];
-                        postMessage('state_saved', { state: base64data, thumbnail: thumbnailbase64data });
-                        log('State saved successfully, size: ' + base64data.length);
-                    };
-                    reader2.onerror = function() {
-                        logError('Failed to convert state to base64', reader.error);
-                        postMessage('save_error', { message: 'Failed to convert state' });
-                    };
-                    reader2.readAsDataURL(new Blob([result.thumbnail]));
-
-                };
-                reader.onerror = function() {
-                    logError('Failed to convert state to base64', reader.error);
-                    postMessage('save_error', { message: 'Failed to convert state' });
-                };
-                reader.readAsDataURL(new Blob([result.state]));
-
-            } catch (error) {
-                logError('Failed to save state', error);
-                postMessage('save_error', { message: error.message || error.toString() });
-            }
-        },
-
-        /**
-         * 加载游戏状态
-         * @param {string} stateData - base64 编码的状态数据
-         */
-        loadState: async function(stateData) {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                log('Loading state...');
-
-                let state;
-                if (stateData) {
-                    const cleaned = (stateData || '').trim();
-                    // 从 base64 转换
-                    const binaryString = atob(cleaned);
-                    const bytes = new Uint8Array(binaryString.length);
-                    for (let i = 0; i < binaryString.length; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    state = bytes.buffer;
-                } else {
-                    throw new Error('没有可用的保存状态');
-                }
-
-                await nostalgistInstance.loadState(state);
-                log('State loaded successfully');
-                return true;
-            } catch (error) {
-                logError('Failed to load state', error);
-                return false;
-            }
-        },
-
-        /**
-         * 重启游戏
-         */
-        restart: async function() {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                log('Restarting game...');
-                await nostalgistInstance.restart();
-                postMessage('game_restarted', {});
-                log('Game restarted successfully');
-            } catch (error) {
-                logError('Failed to restart game', error);
-                postMessage('restart_error', { message: error.message || error.toString() });
-            }
-        },
-
-        /**
-         * 暂停游戏
-         */
-        pause: function() {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                const status = nostalgistInstance.getStatus();
-                const isPaused = status && (status.includes('paused') || status === 'paused');
-                if (!isPaused) {
-                    nostalgistInstance.pause();
-                    postMessage('game_paused', {});
-                }
-                log('Game paused');
-            } catch (error) {
-                logError('Failed to pause game', error);
-            }
-        },
-
-        /**
-         * 继续游戏
-         */
-        resume: function() {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                const status = nostalgistInstance.getStatus();
-                const isPaused = status && (status.includes('paused') || status === 'paused');
-                if (isPaused) {
-                    nostalgistInstance.resume();
-                    postMessage('game_resumed', {});
-                }
-                log('Game resumed');
-            } catch (error) {
-                logError('Failed to resume game', error);
-            }
-        },
-
-        /**
-         * 检查游戏是否已暂停
-         */
-        isPaused: function() {
-            try {
-                if (!nostalgistInstance) {
-                    return false;
-                }
-
-                const status = nostalgistInstance.getStatus();
-                const isPaused = status && (status.includes('paused') || status === 'paused');
-                log('Game status: ' + status + ', isPaused: ' + isPaused);
-                if (isPaused) {
-                    postMessage('game_paused');
-                } else {
-                    postMessage('game_resumed');
-                }
-                return isPaused;
-            } catch (error) {
-                logError('Failed to check pause status', error);
-                return false;
-            }
-        },
-
-        sendFastForward: function() {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                nostalgistInstance.sendCommand('FAST_FORWARD');
-                log('sendFastForward success');
-            } catch (error) {
-                logError('Failed to sendFastForward', error);
-            }
-        },
-
-        /**
-         * 截图
-         */
-        screenshot: async function() {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                log('Taking screenshot...');
-                const blob = await nostalgistInstance.screenshot();
-
-                // 将 blob 转换为 base64
-                blobToBase64(blob, function(base64Data) {
-                    const base64 = base64Data.split(',')[1];
-                    postMessage('screenshot_taken', { image: base64 });
-                    log('Screenshot taken successfully');
-                });
-            } catch (error) {
-                logError('Failed to take screenshot', error);
-                postMessage('screenshot_taken', { message: error.message || error.toString() });
-            }
-        },
-
-        /**
-         * 退出模拟器
-         */
-        exit: function() {
-            try {
-                if (nostalgistInstance) {
-                    log('Exiting emulator...');
-                    nostalgistInstance.exit();
-                    nostalgistInstance = null;
-
-                    // 清空容器
-                    const container = document.getElementById('emulator-container');
-                    if (container) {
-                        container.innerHTML = '';
-                    }
-
-                    postMessage('emulator_exited', {});
-                }
-            } catch (error) {
-                logError('Failed to exit emulator', error);
-            }
-        },
-
-        /**
-         * 响应按键
-         * @param {Object} keyConfig - 按键配置对象
-         * @param {string} keyConfig.button - 按键名称 (up, down, left, right, select, start, a, b, x, y, l, l2, l3, r, r2, r3)
-         * @param {number} keyConfig.player - 玩家编号 (1-4)
-         * @param {string} keyConfig.action - 动作类型 (press, down, up)
-         * @param {number} keyConfig.duration - 按键持续时间 (毫秒，仅对 press 有效)
-         */
-        keyEvent: async function(keyConfig) {
-            try {
-                if (!nostalgistInstance) {
-                    throw new Error('模拟器未运行');
-                }
-
-                // 参数解析和默认值
-                const button = keyConfig.button;
-                const player = keyConfig.player;
-                const action = keyConfig.action;
-
-                // 验证玩家编号
-                if (player < 1 || player > 4) {
-                    throw new Error(`无效的玩家编号: ${player}。支持的玩家: 1-4`);
-                }
-
-                // 根据动作类型执行相应的操作
-                switch (action) {
-                    case 'press':
-                        await nostalgistInstance.press(button, player, keyConfig.duration);
-                        break;
-                    case 'down':
-                        nostalgistInstance.pressDown(button, player);
-                        break;
-                    case 'up':
-                        nostalgistInstance.pressUp(button, player);
-                        break;
-                }
-
-                log(`按键操作完成 玩家${player} - button: ${button} - action: ${action}`);
-            } catch (error) {
-                logError('Failed to keyEvent', error);
-            }
-        }
-    };
-    window.JSBridgeApi = JSBridgeApi;
-
-    /**
-     * Cheat handlers (called from native via callFunction)
-     * payload format: JSON string {"action": "...", "requestId": "...", ...}
-     */
-    function handleApplyCheat(payloadJson) {
-        try {
-            const payload = typeof payloadJson === 'string'
-                ? JSON.parse(payloadJson || '{}')
-                : (payloadJson || {});
-            const { requestId, id, code, type } = payload;
-            console.log('[cheat] applyCheat', payload);
-            log(`applyCheat id=${id} type=${type}`);
-            if (!nostalgistInstance || !nostalgistInstance.applyCheat) {
-                throw new Error('nostalgistInstance or applyCheat not ready');
-            }
-            Promise.resolve(nostalgistInstance.applyCheat({ id, code, type }))
-                .then(() => emitCheatResult('applyCheat', requestId, true, 'ok'))
-                .catch((err) => {
-                    logError('applyCheat failed', err);
-                    emitCheatResult('applyCheat', requestId, false, err?.message || 'applyCheat failed');
-                });
-        } catch (e) {
-            logError('applyCheat failed', e);
-            emitCheatResult('applyCheat', (payloadJson && payloadJson.requestId) || '', false, e?.message);
-        }
-    }
-
-    function handleToggleCheat(payloadJson) {
-        try {
-            const payload = typeof payloadJson === 'string'
-                ? JSON.parse(payloadJson || '{}')
-                : (payloadJson || {});
-            const { requestId, id, enable } = payload;
-            console.log('[cheat] toggleCheat', payload);
-            log(`toggleCheat id=${id} enable=${enable}`);
-            if (!nostalgistInstance || !nostalgistInstance.toggleCheat) {
-                throw new Error('nostalgistInstance or toggleCheat not ready');
-            }
-            Promise.resolve(nostalgistInstance.toggleCheat(id, !!enable))
-                .then(() => emitCheatResult('toggleCheat', requestId, true, 'ok'))
-                .catch((err) => {
-                    logError('toggleCheat failed', err);
-                    emitCheatResult('toggleCheat', requestId, false, err?.message || 'toggleCheat failed');
-                });
-        } catch (e) {
-            logError('toggleCheat failed', e);
-            emitCheatResult('toggleCheat', (payloadJson && payloadJson.requestId) || '', false, e?.message);
-        }
-    }
-
-    function handleRemoveCheat(payloadJson) {
-        try {
-            const payload = typeof payloadJson === 'string'
-                ? JSON.parse(payloadJson || '{}')
-                : (payloadJson || {});
-            const { requestId, id } = payload;
-            console.log('[cheat] removeCheat', payload);
-            log(`removeCheat id=${id}`);
-            if (!nostalgistInstance || !nostalgistInstance.removeCheat) {
-                throw new Error('nostalgistInstance or removeCheat not ready');
-            }
-            Promise.resolve(nostalgistInstance.removeCheat(id))
-                .then(() => emitCheatResult('removeCheat', requestId, true, 'ok'))
-                .catch((err) => {
-                    logError('removeCheat failed', err);
-                    emitCheatResult('removeCheat', requestId, false, err?.message || 'removeCheat failed');
-                });
-        } catch (e) {
-            logError('removeCheat failed', e);
-            emitCheatResult('removeCheat', (payloadJson && payloadJson.requestId) || '', false, e?.message);
-        }
-    }
-    // Expose to native via JSBridgeApi.callFunction(...)
-    JSBridgeApi.applyCheat = handleApplyCheat;
-    JSBridgeApi.toggleCheat = handleToggleCheat;
-    JSBridgeApi.removeCheat = handleRemoveCheat;
-
-    // 错误处理
-    window.addEventListener('error', function(e) {
-        logError('Window error: ' + e.message, e.error);
-    });
-
-    window.addEventListener('unhandledrejection', function(e) {
-        logError('Unhandled promise rejection', e.reason);
-    });
-</script>
-</body>
+  </section>  <footer>
+    © 2026 GTA Modding Community — Official Creator Page
+  </footer></div></body>
 </html>
